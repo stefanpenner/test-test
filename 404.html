@@ -1,0 +1,22 @@
+<script>
+  function parse(href) {
+    var a = document.createElement('a');
+    a.href = href;
+    return a;
+  }
+
+  function alternativePage(pathname, search) {
+    if (/[?$=]/.test(search)) {
+      return pathname + search.replace(/[?]/g, '%3F');
+    } else if (!/\.html$/.test(pathname)) {
+      return pathname + '.html';
+    } else {
+      console.log('yo');
+    }
+  }
+
+  var pathname = alternativePage(window.location.pathname, window.location.search);
+  if (pathname) {
+    window.location = window.location.protocol + '//' + window.location.host + pathname;
+  }
+</script>
